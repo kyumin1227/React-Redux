@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.1/redux.js"></script>
+  </head>
   <body>
     <div id="subject"></div>
     <div id="toc"></div>
@@ -16,12 +19,21 @@
       }
 
       function TOC() {
+        var state = store.getState();
+        var i = 0;
+        var liTags = "";
+        while (i < state.contents.length) {
+          liTags += `
+            <li><a onclick="event.preventDefault();
+                var action = {type:'SELECT', id:${state.contents[i].id}}
+                store.dispatch(action);"
+                href="${state.contents[i].id}.html">${state.contents[i].title}</a></li>
+            `;
+          i += 1;
+        }
         document.querySelector("#toc").innerHTML = `
             <nav>
-                <ol>
-                    <li><a href="1.html">HTML</a></li>
-                    <li><a href="2.html">CSS</a></li>
-                </ol>
+                <ol>${liTags}</ol>
             </nav>
         `;
       }
@@ -43,6 +55,27 @@
             </article>
         `;
       }
+
+      function reducer(state, action) {
+        console.log(state, action);
+        if (state === undefined) {
+          return {
+            selected_id: null,
+            contents: [
+              { id: 1, title: "HTML", desc: "HTML is ..." },
+              { id: 2, title: "CSS", desc: "CSS is ..." },
+            ],
+          };
+        }
+        var newState;
+        if (action.type === "SELECT") {
+          newState = Object.assign({}, state, { selected_id: action.id });
+        }
+        console.log(action, state, newState);
+        return newState;
+      }
+
+      var store = Redux.createStore(reducer);
 
       subject();
       TOC();
