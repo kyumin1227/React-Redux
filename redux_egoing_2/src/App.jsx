@@ -1,35 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./style.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [number, setNumber] = useState(1);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div id="container">
+      <h1>Root</h1>
+      <div id="grid">
+        <Left1 number={number}></Left1>
+        <Right1></Right1>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+function Left1(props) {
+  return (
+    <div>
+      <h1>Left1 : {props.number}</h1>
+      <Left2 number={props.number}></Left2>
+    </div>
+  );
+}
+
+function Left2(props) {
+  return (
+    <div>
+      <h1>Left2 : {props.number}</h1>
+      <Left3 number={props.number}></Left3>
+    </div>
+  );
+}
+
+function Left3(props) {
+  return (
+    <div>
+      <h1>Left3 : {props.number}</h1>
+    </div>
+  );
+}
+
+function Right1(props) {
+  return (
+    <div>
+      <h1>Right1</h1>
+      <Right2></Right2>
+    </div>
+  );
+}
+
+function Right2(props) {
+  return (
+    <div>
+      <h1>Right2</h1>
+      <Right3></Right3>
+    </div>
+  );
+}
+
+function Right3(props) {
+  return (
+    <div>
+      <h1>Right3</h1>
+    </div>
+  );
+}
