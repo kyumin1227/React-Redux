@@ -1,7 +1,12 @@
 import { useState } from "react";
+import Router from "./Router";
 
 function App() {
-  return <div>hi</div>;
+  return (
+    <div>
+      <Router />
+    </div>
+  );
 }
 
 export default App;
