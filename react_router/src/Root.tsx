@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
-import Header from "./components/header";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div>
       <Header />
       {/* Outlet을 children으로 대체 */}
-      <Outlet />
+      <Outlet context={{ darkmode: true }} />
     </div>
   );
 }
