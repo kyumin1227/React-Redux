@@ -5,6 +5,7 @@ import Root from "./Root";
 import NoNav from "./NoNav";
 import NotFound from "./screens/NotFound";
 import ErrorComponent from "./components/ErrorComponent";
+import User from "./screens/users/User";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "users/:userId",
+        element: <User />,
       },
     ],
     // 주소를 찾지 못하였을 때 또는 컴포넌트가 충돌하였을 때 표시
